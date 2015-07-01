@@ -1,0 +1,22 @@
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>Alerts</h5>
+        <div ibox-tools></div>
+    </div>
+    <div class="ibox-content tbb_alert_list">
+        <div class="feed-activity-list">
+            <div class="feed-element" ng-repeat="alert in alerts" ng-class="{'bg-info': alert.id === selectedAlert.id}" ng-click="goToAlert(alert.id)">
+                <a href="" class="pull-left">
+                    <img alt="image" class="img-circle" src="img/a2.jpg"/>
+                </a>
+                <div>
+                    <small class="pull-right text-navy"> {{ getCreatedTime(alert).fromNow() }} </small>
+                    <strong>{{alert.contexts.userFullname}}</strong>
+                    <div>Uploaded <strong>{{alert.contexts.dataName}}</strong> to Box.com</div>
+                    <small class="text-muted"> {{ getCreatedTime(alert).toDate() | date:'medium' }} </small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="m-b-md">
+
+                    <a href="" class="btn btn-white btn-xs pull-right">Action</a>
+                    <h2><strong>{{selectedAlert.contexts.userFullname}}</strong> uploaded <strong>{{selectedAlert.contexts.dataName}}</strong> to Box.com</h2>
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>Alert ID:</dt>
+                    <dd><span>{{selectedAlert.id}}</span></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Status:</dt>
+                    <dd><span class="label label-primary">{{selectedAlert.status}}</span></dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <dl class="dl-horizontal">
+                    <dt>App: </dt>
+                    <dd>{{selectedAlert.appName}}</dd>
+                </dl>
+            </div>
+            <div class="col-lg-7" id="cluster_info">
+                <dl class="dl-horizontal">
+
+                    <dt>Last Updated:</dt>
+                    <dd>{{ getLastUpdatedTime(selectedAlert).toDate() | date:'medium' }} </dd>
+                    <dt>Created:</dt>
+                    <dd>{{ getCreatedTime(selectedAlert).toDate() | date:'medium' }} </dd>
+                </dl>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <dl class="dl-horizontal">
+                    <dt>Risk Score:</dt>
+                    <dd>{{ selectedAlert.riskScore }} / {{ selectedAlert.maxRiskScore }} </dd>
+                    <dt>Risks:</dt>
+                    <dd>
+                        <div ng-repeat="policy in selectedAlert.policies">
+                            <span class="label badge" ng-class="{'badge-warning': policy.risk_level === 'Medium', 'badge-danger': policy.risk_level === 'High'}">
+                                {{ policy.description }}
+                            </span>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="row m-t-sm">
+            <div class="col-lg-12">
+                <div class="panel blank-panel ui-tab">
+                    <tabset>
+                        <tab heading="Details" active="tab.active" class="dsads">
+                            <div ng-include="'views/tbb/alert_context_table.html'"></div> 
+                        </tab>
+                        <tab heading="Files">
+                            <div ng-include="'views/tbb/alert_files.html'"></div> 
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>  
+    </div>
